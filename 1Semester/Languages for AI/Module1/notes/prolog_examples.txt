@@ -1,0 +1,133 @@
+
+####   LIST    ######
+
+1) example for scorporamento parentesi
+
+#output: X = [1, 3, [2, 4, []]]
+
+myapp([], [], []).
+myapp([H1 | T1], [H2 | T2], Res) :- myapp(T1, T2, Res2), Res = [H1, H2, Res2].
+
+Now I use | instead of comma
+
+myapp([], [], []).
+myapp([H1 | T1], [H2 | T2], Res) :- myapp(T1, T2, Res2), Res = [H1, H2 | Res2].
+
+# output: X = [1, 3, 2, 4]
+
+
+
+
+
+2) Append
+
+myapp([], X, X).
+myapp([H1 | T1], L2, [H1 | Res]) :- myapp(T1, L2, Res).
+
+
+
+
+
+
+3)  Sum
+
+mysum(A, B, Res) :- Res is A + B.
+
+
+
+
+
+
+
+4) Is on list
+
+is_on_list([H | _], H).
+is_on_list([_ | T], Elem) :- is_on_list(T, Elem).
+
+
+
+
+5) List construction: retrun a list with elem greater than E.
+
+greater_than6([], _, []).
+greater_than6([H | T], E, Res) :- greater_than6(T, E, Res2), H > E, Res = [H | Res2].
+greater_than6([_ | T], E, Res) :- greater_than6(T, E, Res).
+
+NOTE that the third line is required because if I there is an elem that do not resperct the condition H > E, this will return false. But actually I need to continue to foreach the elements' list. So I add the third line.
+It is like
+if H > E:
+    do something and call recursion
+else:
+    do nothing and call recursion
+
+
+    
+    
+6) Delete elem D from list and return new list without D (same patterm as 5) exercise)
+
+mydel([], _, []).
+mydel([H | T], D, Res) :- mydel(T, D, Res2), not(H = D), Res = [H | Res2]. 
+mydel([_ | T], D, Res) :- mydel(T, D, Res).    
+    
+
+    
+    
+
+7) Length of a list
+
+mylen([], 0).
+mylen([_ | T], Res) :- mylen(T, Res2), Res is Res2 + 1.
+
+NOTE the usage of "is" which is the operator for math calculations
+
+
+
+
+
+8) Chech whether the input is a list
+
+is_list([]).
+is_list([_ | _]).
+
+
+
+
+9) Reverse of a list (with accumulator)
+
+myrev([], A, A).
+myrev([H | T], A, Res) :- myrev(T, [H | A], Res).
+
+
+
+
+10) Reverse of a list (with append)
+
+myrev([], []).
+myrev([H | T], Res) :- myrev(T, Res2), append(Res2, [H], Res).
+
+
+NOTE that append concatenates 2 lists, so I need to write [H] and not just H
+
+
+
+####   TREE    ######
+ 
+1) Count the leaves of a tree
+
+ 
+count_leaves(t(_, nil, nil), 1).
+count_leaves(t(_, L, nil), Res) :- count_leaves(L, Res).
+count_leaves(t(_, nil, R), Res) :- count_leaves(R, Res).
+count_leaves(t(_, L, R), Res) :- count_leaves(L, ResL), count_leaves(R, ResR), Res is ResL + ResR.
+
+
+
+2) Count all the nodes of a tree
+
+
+count_all(t(_, nil, nil), 1).
+count_all(t(_, L, nil), Res) :- count_all(L, ResL), Res is ResL + 1.
+count_all(t(_, nil, R), Res) :- count_all(R, ResR), Res is ResR + 1.
+count_all(t(_, L, R), Res) :- count_all(L, ResL), count_all(R, ResR), Res is ResL + ResR + 1.
+
+query: count_all(t(a, t(b, t(c, nil, nil), nil), t(c, nil, t(c, nil, nil))), R).

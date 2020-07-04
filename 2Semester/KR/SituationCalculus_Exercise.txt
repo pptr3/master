@@ -1,0 +1,93 @@
+A photographer has to shoot two pictures, one of the lion, located in the point A and one of an elephant, in the point B.
+To shoot a picture, the camera needs to be on. The photographer can move from a point to another one, shoot photos and switch on/off the camera. 
+Let us suppose that lion and elephant do not move and each of the three points is reachable from others. 
+
+He initially C, he is not holding the camera, and the battery is empty.
+
+
+
+#------------------------#
+#  POSSIBLE SOLUTION 1   #
+#------------------------#
+
+
+INITIAL SITUATION:
+
+at(L, A)
+at(E, B)
+at(p, [L, E], C, s0)
+NOT camera_on(s0)
+
+
+# ---------- Possibility axioms ---------------------
+
+at(p, pl, x, s) → Poss(Go(x, y), s)
+at(p, pl, x, s) AND at(a, x, s) -> Poss(Take_photo(a, x), s)
+NOT camera_on(x, s) → Poss(Switch_on(x), s)
+camera_on(x, s) -> Poss(Switch_off(x), s)
+at(p, [], x, s) -> Poss(Finish(x), s)
+
+
+# ---------- Effect axioms ---------------------
+
+Poss(Go(x,y), s) 		-> 	At(p, pl, y, Result(Go(x,y), s)) 
+						AND (camera_on(Result(Go(x,y), s) ↔ camera_on(s))
+
+
+Poss(Take_photo(a, x), s) 	-> 	At(p, remove(a, pl), x, Result(Take_photo(a, x)
+						AND (camera_on(Result(take_photo(a, x), s) ↔ camera_on(s))
+
+Poss(Switch_on(x), s) 		->	At(p, pl, x, Result(Switch_on(x), s))
+						AND camera_on
+
+Poss(Switch_off(x), s) 		->	At(p, pl, x, Result(Switch_on(x), s))
+
+Poss(Finish(x), s)		->	Finish(x, Result(Finish(x), s))
+
+# ------------- QUERY FOR THE GOAL -------------------
+
+EXISTS seq Finish(x, Result(seq, s0))
+
+
+#------------------------#
+#  POSSIBLE SOLUTION 2   #
+#------------------------#
+
+
+# ---------- Initial Situation ---------------------
+
+at(p, [L, E], C, s0)
+at(L, A)
+at(E, A)
+NOT camera_on(s0)
+
+camera_on(s0) → camera_on(Result(Go(x, y), s0))
+
+# ---------- Possibility axioms ---------------------
+
+at(p, pl, x, s)  →       Poss(Go(p, x, y), s) 
+at(p, pl, x, s) AND at(a, x, s) →   Poss(take_photo(a), s)
+at(p, [], x, s) →       Poss(finish(), s)
+NOT camera_on(s) →       Poss(switch_on(), s)
+camera_on(s) →         Poss(switch_off(), s)
+
+
+# ------------ Effects axioms -----------------------
+
+Poss(Go(x, y), s) →     at(p, pl, y, Result(Go(x, y), s))      
+         AND ( camera_on(s) ↔️ camera_on(Result(Go(x, y), s) )
+
+Poss(take_photo(a), s) →    ( at(p, Remove(a, pl), x, Result(take_photo(a), s) ↔️ at(p, x, s)) 
+         AND ( camera_on(s) ↔️ camera_on(Result(take_photo(a), s) )
+
+Poss(switch_on(), s) →    camera_on(Result(switch_on(), s))
+         AND at(p, x, Result(switch_on(), s)) ↔️ at(p, x, s)
+
+Poss(switch_off(), s) →    at(p, pl, x, Result(switch_off(), s)) ↔️ at(p, pl, x, s)      // here I do not define the state of the camera because it will be considered as false by default if not specified
+
+Poss(finish(), s) →    finish(Result(finish(), s))
+
+
+# ------------- QUERY FOR THE GOAL -------------------
+
+EXISTS seq finish(Result(seq, s0))                  // does it exists a sequence which bring us to the state "finish" if applied at the state s0?

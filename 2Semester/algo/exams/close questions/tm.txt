@@ -1,0 +1,6 @@
+1) About TMs:
+    - n° tapes can make DTIME(n) different.  (my answer: yes)
+    - EXP can be equal to P.  (my answer: no)
+    - EXP != P. (my answer: yes)
+    - n° tapes can make P different. (my answer: no)
+
