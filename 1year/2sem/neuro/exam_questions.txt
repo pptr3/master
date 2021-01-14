@@ -1,0 +1,25 @@
+Romei:
+- cos'è un neurone, chi lo ha scoperto e quando e come funziona
+- come funziona l'integrazione multisensoriale (ovvero spiegare l'esperimento di quando viene presentato uno stimolo visivo ed uno auditorio e senti l'illusione del doppio blink del cerchio -- spiegare perchè accade ciò (Alex spiega nei suoi audio velocemente sta cosa)). Poi il prof chiede se questo stimolo si può decidere. Dopo ha chiesto di parlare dell'eserimento dove viene fatto questo lavoro (che si chiama Detection Window, una roba del genere -- se non trovo questo esperimento negli appunti, risentire gli audio di alex o chiedere a lui quale intendeva esattamente).
+
+- differenza filosofica tra cognition e Neuroscience e come si è arrivati a definire questa scienza
+- concentrati sul capire cos'è action potential, membrane potential, depolarizzazione, iperpolarizzazione, sincronizzazione tra i neuroni
+
+- why feedprop is more relevant than backprop (andrea answer: something about the fact that vision is an active process and the brain does some hypothesis in order to focus on some stimulus instead of others)
+- talk me about the sensation and perception
+
+- they asked relation between CS, AI and Cognition. For example I talked about multithreading and decision making
+
+- Romei asked me about correlation vs causation and AI applications, while Di Pellegrino asked about attention in general
+
+- EEG, Event releated Potential and 3D reconstruction
+
+- Romei asked me about multisensory integration and what is consciousness
+
+
+Pellegrino:
+- parlami di visual attention o decision making
+
+- talk about space based and object based experiment
+
+- choose between Selective Visual Attention or Decision Making explain them and talk about some of their experiments (I choosed SVA)
