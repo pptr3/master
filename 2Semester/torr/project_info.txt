@@ -1,2 +1,0 @@
-grafo usato, perchè dei pesi, che tipi di query si possono fare, 
-descrizione risultati (se sono attesi o meno), metodi usati

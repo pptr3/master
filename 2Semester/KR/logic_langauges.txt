@@ -1,5 +1,0 @@
-- propositional logic
-- FOL
-- situation calculus
-- description logic
-- default logic
